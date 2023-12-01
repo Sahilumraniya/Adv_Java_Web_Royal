@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Employee</title>
+</head>
+<body>
+<form action="AddEmployeeServlet">
+	First Name : <input name="firstname" type="text" /> <br> <br>
+	Email : <input name="email" type="email" /> <br> <br>
+	Password : <input name="password" type="password" /> <br> <br>
+	Gender : <input name="gender" value="male" type="radio" /> Male <input name="gender" value="female" type="radio" /> Female <br> <br> 
+	City : <select name="city">
+				<option value="select city">--Select City--</option>
+				<option value="ahmedabad">Ahmedabad</option>
+				<option value="surat">Surat</option>
+				<option value="vadodara">Vadodara</option>
+			</select> <br> <br>
+	Hobby : <input type="checkbox" name="hobby" value="cricket"> Cricket <br> <br>
+		    <input type="checkbox" name="hobby" value="football"/> FootBall	<br>  <br>
+			<input type="checkbox" name="hobby" value="boxCricket"/> BoxCricket <br> <br>
+	Address : <textarea name="address" cols="12" rows="5"></textarea> <br> <br> <br> <br>
+	
+	<input type="submit" value="addEmployee"/>
+	
+</form>
+</body>
+</html>
