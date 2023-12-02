@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/RegistartionServlet")
-public class RegistartionServlet extends HttpServlet{
+@WebServlet("/RegistrationServlet")
+public class RegistrationServlet extends HttpServlet{
 	
 	@Override
 	public void service(HttpServletRequest request,HttpServletResponse response) throws IOException ,ServletException{
@@ -19,27 +19,46 @@ public class RegistartionServlet extends HttpServlet{
 		String fname = request.getParameter("fname");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String gender = request.getParameter("gender");
+		String city = request.getParameter("city");
+		String aboutMe = request.getParameter("aboutMe");
+		
 		Boolean isVaild = true;
-		RegistartionError e = new RegistartionError();
-		if(fname.trim()=="") {
+		RegistrationError e = new RegistrationError();
+		
+		if(fname==null ||fname.trim()=="") {
 			isVaild=false;
 			e.setFname("Enter first name");
 		}
-		if(email.trim()=="") {
+		if(email==null || email.trim()=="") {
 			isVaild=false;
 			e.setEmail("Enter email");
 		}
-		if(password.trim()=="") {
+		if(password==null || password.trim()=="") {
 			isVaild=false;
 			e.setPassword("Enter Password");
 		}
+		if(gender==null) {
+			isVaild=false;
+			e.setGender("Enter Gender");
+		}
+		if(city==null || city.equals("None")) {
+			isVaild=false;
+			e.setCity("Please select City");
+		}
+//		System.out.println(aboutMe);
+		if(aboutMe==null || aboutMe.trim()=="") {
+			isVaild=false;
+			e.setAboutMe("Please somethong about your self");
+		}
+		RegistrationData data=new RegistrationData(fname, email, password, gender, city, aboutMe);
 		RequestDispatcher rd;
 		if(!isVaild) {
 			request.setAttribute("error", e);
+			request.setAttribute("data", data);
 			rd = request.getRequestDispatcher("Registration.jsp");
 			
 		}else {
-			RegistrationData data = new RegistrationData(fname,email,password);
 			request.setAttribute("data", data);
 			rd = request.getRequestDispatcher("Home.jsp");
 		}

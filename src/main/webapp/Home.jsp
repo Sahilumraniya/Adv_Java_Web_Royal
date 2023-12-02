@@ -8,10 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Home</h1>
-	<%RegistrationData data = (RegistrationData) request.getAttribute("data"); %>
-	<h2>First Name: <%=data.fname %></h2>
-	<h2>Email: <%=data.email %></h2>
-	<h2>Password: <%=data.password %></h2>
+	<h1>Home page Welcome</h1>
 </body>
 </html>
