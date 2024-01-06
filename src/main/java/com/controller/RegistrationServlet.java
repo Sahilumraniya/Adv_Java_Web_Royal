@@ -26,13 +26,22 @@ public class RegistrationServlet extends HttpServlet{
 		Boolean isVaild = true;
 		RegistrationError e = new RegistrationError();
 		
+		String alpha = "[a-zA-z]+";
+		String emailRegEx = "[a-zA-Z]+@[a-zA-Z]+\\.[a-zA-Z]{2,5}";
+		
 		if(fname==null ||fname.trim()=="") {
 			isVaild=false;
 			e.setFname("Enter first name");
+		}else if(fname.matches(alpha)==false) {
+			isVaild=false;
+			e.setFname("Enter first vaild name");
 		}
 		if(email==null || email.trim()=="") {
 			isVaild=false;
 			e.setEmail("Enter email");
+		}else if(email.matches(emailRegEx)) {
+			isVaild=false;
+			e.setEmail("Enter vaild Email");
 		}
 		if(password==null || password.trim()=="") {
 			isVaild=false;
@@ -60,6 +69,7 @@ public class RegistrationServlet extends HttpServlet{
 			
 		}else {
 			request.setAttribute("data", data);
+			System.out.println(data.getGender());
 			rd = request.getRequestDispatcher("Home.jsp");
 		}
 		rd.forward(request, response);

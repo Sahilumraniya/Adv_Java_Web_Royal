@@ -9,5 +9,13 @@
 </head>
 <body>
 	<h1>Home page Welcome</h1>
+	<%
+	String fname = (String) request.getAttribute("firstName");
+	String dob = (String) request.getAttribute("dob");
+	String gender = (String) request.getAttribute("gender");
+	%>
+	<h2>First Name: ${data.fName} </h2>
+	<h2>DOB: <%=dob %></h2>
+	<h2>Gender: ${data.gender }</h2>
 </body>
 </html>
