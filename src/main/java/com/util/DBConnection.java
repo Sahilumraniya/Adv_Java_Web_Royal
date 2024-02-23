@@ -19,7 +19,7 @@ public class DBConnection {
 	}
 	
 	public int addRow(String fname,String email,String password) throws SQLException {
-		PreparedStatement prs = con.prepareStatement("insert into royalavdjava.user (firstName,email,password) values (?,?,?);");
+		PreparedStatement prs = con.prepareStatement("insert into user (firstName,email,password) values (?,?,?);");
 		prs.setString(1, fname);
 		prs.setString(2, email);
 		prs.setString(3, password);
@@ -35,13 +35,19 @@ public class DBConnection {
 		}
 	}
 	
+	public int deleteUser(int userId) throws SQLException {
+		PreparedStatement prstm = con.prepareStatement("Delete from user where userId=?");
+		prstm.setInt(1, userId);
+		return prstm.executeUpdate();
+	}
+	
 	public static void main(String[] args) {
 		String url = "jdbc:mysql://localhost:3306/royalavdjava";
 		String username = "root";
 		String password = "root";
 		DBConnection db = new DBConnection(url, username, password);
-		/*
 		Scanner sc = new Scanner(System.in);
+		/*
 		System.out.println("Enter first name : ");
 		String fname = sc.next();
 		System.out.println("Enter email : ");
@@ -49,8 +55,13 @@ public class DBConnection {
 		System.out.println("Enter password : ");
 		String pass = sc.next();
 		*/
+		System.out.println("Enter user Id : ");
+		
 		try {
 //			db.addRow(fname, email, pass);
+			db.getAllUser();
+			int userId = sc.nextInt();
+			db.deleteUser(userId);
 			db.getAllUser();
 		}catch (Exception e) {
 			e.printStackTrace();
